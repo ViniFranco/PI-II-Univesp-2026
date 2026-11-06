@@ -20,23 +20,29 @@ class StudentsTable
             ->columns([
                 TextColumn::make('id')
                     ->label('ID')
+                    ->visible(false)
                     ->searchable(),
                 TextColumn::make('name')
+                    ->label(__('filament/resources/student.columns.name'))
                     ->searchable(),
                 TextColumn::make('birth_date')
+                    ->label(__('filament/resources/student.columns.birth_date'))
                     ->date()
                     ->sortable(),
                 TextColumn::make('guardian.name')
+                    ->label(__('filament/resources/student.columns.guardian_id'))
                     ->searchable(),
                 TextColumn::make('deleted_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('created_at')
+                    ->label(__('filament/common/columns.created_at'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')
+                    ->label(__('filament/common/columns.updated_at'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
