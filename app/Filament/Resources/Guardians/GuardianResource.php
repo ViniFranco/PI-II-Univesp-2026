@@ -79,6 +79,6 @@ class GuardianResource extends Resource
 
     public static function getNavigationIcon(): string | BackedEnum | Htmlable | null
     {
-        return Heroicon::ShieldCheck;
+        return Heroicon::UserGroup;
     }
 }
