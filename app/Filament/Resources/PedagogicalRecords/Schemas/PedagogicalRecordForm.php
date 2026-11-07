@@ -2,10 +2,13 @@
 
 namespace App\Filament\Resources\PedagogicalRecords\Schemas;
 
+use App\Models\Enrollment;
+use Filament\Forms\Components\Hidden;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Schema;
+use Illuminate\Support\Facades\Auth;
 
 class PedagogicalRecordForm
 {
@@ -13,17 +16,53 @@ class PedagogicalRecordForm
     {
         return $schema
             ->components([
-                Select::make('user_id')
-                    ->relationship('user', 'name')
+                Hidden::make('user_id')
+                    ->default(Auth::id())
                     ->required(),
                 Select::make('enrollment_id')
                     ->relationship('enrollment', 'id')
+                    ->searchable()
+                    ->getSearchResultsUsing(function (string $search): array {
+                        return Enrollment::query()
+                            ->whereHas(
+                                'student',
+                                fn($query) =>
+                                $query->where('name', 'ilike', "%{$search}%")
+                            )
+                            ->orWhereHas(
+                                'schoolClass',
+                                fn($query) =>
+                                $query->where('name', 'ilike', "%{$search}%")
+                                    ->orWhere('year', 'ilike', "%{$search}%")
+                            )
+                            ->with(['student', 'schoolClass'])
+                            ->limit(50)
+                            ->get()
+                            ->mapWithKeys(fn($enrollment) => [
+                                $enrollment->id => implode(' - ', [
+                                    $enrollment->student->name,
+                                    $enrollment->schoolClass->name,
+                                    $enrollment->schoolClass->year,
+                                ]),
+                            ])
+                            ->toArray();
+                    })
+                    ->columnSpanFull()
                     ->required(),
                 Toggle::make('has_medical_report')
                     ->required(),
-                Textarea::make('content')
-                    ->required()
-                    ->columnSpanFull(),
+                RichEditor::make('content')
+                    ->toolbarButtons([
+                        ['bold', 'italic', 'underline', 'strike', 'subscript', 'superscript'],
+                        ['h2', 'h3'],
+                        ['alignStart', 'alignCenter', 'alignEnd'],
+                        ['blockquote', 'bulletList', 'orderedList'],
+                        ['table'],
+                        ['undo', 'redo'],
+                    ])
+                    ->json()
+                    ->columnSpanFull()
+                    ->required(),
             ]);
     }
 }

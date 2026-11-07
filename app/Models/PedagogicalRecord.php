@@ -20,6 +20,10 @@ class PedagogicalRecord extends Model
         'has_medical_report',
     ];
 
+    protected $casts = [
+        'content' => 'array',
+    ];
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

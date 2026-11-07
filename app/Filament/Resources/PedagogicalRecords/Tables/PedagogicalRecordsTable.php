@@ -21,24 +21,33 @@ class PedagogicalRecordsTable
             ->columns([
                 TextColumn::make('id')
                     ->label('ID')
+                    ->visible(false)
                     ->searchable(),
-                TextColumn::make('user.name')
+                TextColumn::make('enrollment.student.name')
+                    ->label(__('filament/resources/student.label'))
                     ->searchable(),
-                TextColumn::make('enrollment.id')
+                TextColumn::make('enrollment.schoolClass.name')
+                    ->label(__('filament/resources/school_class.columns.name'))
+                    ->searchable(),
+                TextColumn::make('enrollment.schoolClass.year')
+                    ->label(__('filament/resources/school_class.columns.year'))
                     ->searchable(),
                 IconColumn::make('has_medical_report')
+                    ->label(__('filament/resources/pedagogical_record.columns.has_medical_report'))
                     ->boolean(),
                 TextColumn::make('deleted_at')
                     ->dateTime()
                     ->sortable()
+                    ->label(__('filament/common/columns.deleted_at'))
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                    ->label(__('filament/common/columns.created_at')),
                 TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
+                    ->label(__('filament/common/columns.updated_at'))
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
