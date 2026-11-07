@@ -13,9 +13,15 @@ class SchoolClassForm
         return $schema
             ->components([
                 TextInput::make('name')
+                    ->label(__('filament/resources/school_class.columns.name'))
+                    ->validationAttribute(__('filament/resources/school_class.columns.name'))
                     ->required(),
-                DatePicker::make('year')
-                    ->format('Y')
+                TextInput::make('year')
+                    ->numeric()
+                    ->label(__('filament/resources/school_class.columns.year'))
+                    ->validationAttribute(__('filament/resources/school_class.columns.year'))
+                    ->rules(['date_format:Y'])
+                    ->afterOrEqual(today()->format('Y'))
                     ->required(),
             ]);
     }

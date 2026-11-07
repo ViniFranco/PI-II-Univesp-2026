@@ -23,9 +23,4 @@ class SchoolClass extends Model
     {
         return $this->hasMany(Enrollment::class);
     }
-
-    public function students(): HasManyThrough
-    {
-        return $this->hasManyThrough(Student::class, Enrollment::class);
-    }
 }

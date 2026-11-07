@@ -18,6 +18,7 @@ class StudentForm
                     ->required(),
                 DatePicker::make('birth_date')
                     ->format('d/m/Y')
+                    ->displayFormat('d/m/Y')
                     ->label(__('filament/resources/student.columns.birth_date'))
                     ->native(false)
                     ->required(),

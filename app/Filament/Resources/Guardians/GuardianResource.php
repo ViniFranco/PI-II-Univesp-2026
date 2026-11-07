@@ -6,6 +6,7 @@ use App\Filament\Resources\Guardians\Pages\CreateGuardian;
 use App\Filament\Resources\Guardians\Pages\EditGuardian;
 use App\Filament\Resources\Guardians\Pages\ListGuardians;
 use App\Filament\Resources\Guardians\Pages\ViewGuardian;
+use App\Filament\Resources\Guardians\RelationManagers\StudentsRelationManager;
 use App\Filament\Resources\Guardians\Schemas\GuardianForm;
 use App\Filament\Resources\Guardians\Schemas\GuardianInfolist;
 use App\Filament\Resources\Guardians\Tables\GuardiansTable;
@@ -45,7 +46,7 @@ class GuardianResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            StudentsRelationManager::class,
         ];
     }
 

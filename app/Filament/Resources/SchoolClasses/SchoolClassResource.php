@@ -9,6 +9,7 @@ use App\Filament\Resources\SchoolClasses\Pages\ViewSchoolClass;
 use App\Filament\Resources\SchoolClasses\Schemas\SchoolClassForm;
 use App\Filament\Resources\SchoolClasses\Schemas\SchoolClassInfolist;
 use App\Filament\Resources\SchoolClasses\Tables\SchoolClassesTable;
+use App\Filament\Resources\SchoolClasses\RelationManagers\EnrollmentsRelationManager;
 use App\Models\SchoolClass;
 use BackedEnum;
 use Filament\Resources\Resource;
@@ -45,7 +46,7 @@ class SchoolClassResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            EnrollmentsRelationManager::class,
         ];
     }
 
