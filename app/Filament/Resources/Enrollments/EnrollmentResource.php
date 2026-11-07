@@ -70,6 +70,11 @@ class EnrollmentResource extends Resource
         return __('filament/resources/enrollment.label');
     }
 
+    public static function getNavigationGroup(): ?string
+    {
+        return __('filament/common/navigation.academic');
+    }
+
     public static function getNavigationIcon(): string | BackedEnum | Htmlable | null
     {
         return Heroicon::DocumentText;

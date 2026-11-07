@@ -75,6 +75,11 @@ class PedagogicalRecordResource extends Resource
         return __('filament/resources/pedagogical_record.plural');
     }
 
+    public static function getNavigationGroup(): ?string
+    {
+        return __('filament/common/navigation.academic');
+    }
+
     public static function getNavigationIcon(): string | BackedEnum | Htmlable | null
     {
         return Heroicon::ArchiveBox;

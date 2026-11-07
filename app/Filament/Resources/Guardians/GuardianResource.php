@@ -77,6 +77,11 @@ class GuardianResource extends Resource
         return __('filament/resources/guardian.plural');
     }
 
+    public static function getNavigationGroup(): ?string
+    {
+        return __('filament/common/navigation.management');
+    }
+
     public static function getNavigationIcon(): string | BackedEnum | Htmlable | null
     {
         return Heroicon::UserGroup;
