@@ -10,6 +10,7 @@ use App\Filament\Resources\SchoolClasses\Schemas\SchoolClassForm;
 use App\Filament\Resources\SchoolClasses\Schemas\SchoolClassInfolist;
 use App\Filament\Resources\SchoolClasses\Tables\SchoolClassesTable;
 use App\Filament\Resources\SchoolClasses\RelationManagers\EnrollmentsRelationManager;
+use App\Filament\Resources\SchoolClasses\RelationManagers\PedagogicalRecordsRelationManager;
 use App\Models\SchoolClass;
 use BackedEnum;
 use Filament\Resources\Resource;
@@ -47,6 +48,7 @@ class SchoolClassResource extends Resource
     {
         return [
             EnrollmentsRelationManager::class,
+            PedagogicalRecordsRelationManager::class,
         ];
     }
 

@@ -21,6 +21,10 @@ class Communication extends Model
         'communication_return_status',
     ];
 
+    protected $casts = [
+        'description' => 'array',
+    ];
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

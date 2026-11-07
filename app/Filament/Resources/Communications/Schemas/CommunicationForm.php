@@ -2,10 +2,13 @@
 
 namespace App\Filament\Resources\Communications\Schemas;
 
+use App\Enums\CommunicationChannels;
+use App\Enums\CommunicationReturnStatus;
+use Filament\Forms\Components\Hidden;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Textarea;
 use Filament\Schemas\Schema;
+use Illuminate\Support\Facades\Auth;
 
 class CommunicationForm
 {
@@ -14,18 +17,40 @@ class CommunicationForm
         return $schema
             ->components([
                 Select::make('student_id')
+                    ->label(__('filament/resources/student.label'))
                     ->relationship('student', 'name')
+                    ->preload()
+                    ->searchable()
+                    ->columnSpanFull()
                     ->required(),
-                Select::make('user_id')
-                    ->relationship('user', 'name')
+                Hidden::make('user_id')
+                    ->default(Auth::id())
                     ->required(),
-                TextInput::make('communication_channel')
+                Select::make('communication_channel')
+                    ->label(__('filament/resources/communication.columns.communication_channel'))
+                    ->native(false)
+                    ->options(CommunicationChannels::class)
+                    ->default(CommunicationChannels::PHONE)
                     ->required(),
-                TextInput::make('communication_return_status')
+                Select::make('communication_return_status')
+                    ->label(__('filament/resources/communication.columns.communication_return_status'))
+                    ->options(CommunicationReturnStatus::class)
+                    ->default(CommunicationReturnStatus::RESPONSE_PENDING)
+                    ->native(false)
                     ->required(),
-                Textarea::make('description')
-                    ->required()
-                    ->columnSpanFull(),
+                RichEditor::make('description')
+                    ->label(__('filament/resources/communication.columns.description'))
+                    ->toolbarButtons([
+                        ['bold', 'italic', 'underline', 'strike', 'subscript', 'superscript'],
+                        ['h2', 'h3'],
+                        ['alignStart', 'alignCenter', 'alignEnd'],
+                        ['blockquote', 'bulletList', 'orderedList'],
+                        ['table'],
+                        ['undo', 'redo'],
+                    ])
+                    ->json()
+                    ->columnSpanFull()
+                    ->required(),
             ]);
     }
 }

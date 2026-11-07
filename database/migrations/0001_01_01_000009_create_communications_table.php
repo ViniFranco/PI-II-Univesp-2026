@@ -24,7 +24,7 @@ return new class extends Migration
             $table->enum('communication_channel', array_column(CommunicationChannels::cases(), 'value'));
             $table->enum('communication_return_status', array_column(CommunicationReturnStatus::cases(), 'value'));
 
-            $table->text('description');
+            $table->longText('description');
 
             $table->softDeletes();
             $table->timestamps();

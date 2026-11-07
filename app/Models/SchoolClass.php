@@ -23,4 +23,9 @@ class SchoolClass extends Model
     {
         return $this->hasMany(Enrollment::class);
     }
+
+    public function pedagogicalRecords(): HasManyThrough
+    {
+        return $this->hasManyThrough(PedagogicalRecord::class, Enrollment::class);
+    }
 }

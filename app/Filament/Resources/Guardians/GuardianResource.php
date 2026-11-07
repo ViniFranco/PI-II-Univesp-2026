@@ -10,6 +10,7 @@ use App\Filament\Resources\Guardians\RelationManagers\StudentsRelationManager;
 use App\Filament\Resources\Guardians\Schemas\GuardianForm;
 use App\Filament\Resources\Guardians\Schemas\GuardianInfolist;
 use App\Filament\Resources\Guardians\Tables\GuardiansTable;
+use App\Filament\Resources\Guardians\RelationManagers\CommunicationsRelationManager;
 use App\Models\Guardian;
 use BackedEnum;
 use Filament\Resources\Resource;
@@ -47,6 +48,7 @@ class GuardianResource extends Resource
     {
         return [
             StudentsRelationManager::class,
+            CommunicationsRelationManager::class,
         ];
     }
 

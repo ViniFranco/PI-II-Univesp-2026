@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Student extends Model
@@ -30,8 +31,13 @@ class Student extends Model
         return $this->hasMany(Enrollment::class);
     }
 
-    public function pedagogicalRecords(): HasMany
+    public function pedagogicalRecords(): HasManyThrough
     {
-        return $this->hasMany(PedagogicalRecord::class);
+        return $this->hasManyThrough(PedagogicalRecord::class, Enrollment::class);
+    }
+
+    public function communications(): HasMany
+    {
+        return $this->hasMany(Communication::class);
     }
 }
