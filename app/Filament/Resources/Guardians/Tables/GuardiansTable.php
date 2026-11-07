@@ -20,42 +20,59 @@ class GuardiansTable
             ->columns([
                 TextColumn::make('id')
                     ->label('ID')
+                    ->visible(false)
                     ->searchable(),
                 TextColumn::make('name')
+                    ->label(__('filament/resources/guardian.columns.name'))
+                    ->sortable()
                     ->searchable(),
                 TextColumn::make('email')
                     ->label('Email address')
+                    ->sortable()
+                    ->label(__('filament/resources/guardian.columns.email'))
                     ->searchable(),
                 TextColumn::make('phone')
+                    ->label(__('filament/resources/guardian.columns.phone'))
                     ->searchable(),
                 TextColumn::make('street')
+                    ->visible(false)
                     ->searchable(),
                 TextColumn::make('number')
+                    ->visible(false)
                     ->searchable(),
                 TextColumn::make('complement')
+                    ->visible(false)
                     ->searchable(),
                 TextColumn::make('neighborhood')
+                    ->visible(false)
                     ->searchable(),
                 TextColumn::make('city')
+                    ->visible(false)
                     ->searchable(),
                 TextColumn::make('state')
+                    ->visible(false)
                     ->searchable(),
                 TextColumn::make('zip_code')
+                    ->visible(false)
                     ->searchable(),
                 TextColumn::make('birth_date')
+                    ->visible(false)
                     ->date()
                     ->sortable(),
                 TextColumn::make('deleted_at')
+                    ->visible(false)
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
+                    ->visible(false)
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
+                    ->visible(false)
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
