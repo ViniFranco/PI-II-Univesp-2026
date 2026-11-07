@@ -24,6 +24,7 @@ class StudentForm
                     ->required(),
                 Select::make('guardian_id')
                     ->relationship('guardian', 'name')
+                    ->preload()
                     ->label(__('filament/resources/student.columns.guardian_id'))
                     ->native(false)
                     ->searchable()

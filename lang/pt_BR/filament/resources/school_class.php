@@ -3,7 +3,7 @@
 return [
     'label' => 'Turma',
     'columns' => [
-        'name' => 'Nome',
+        'name' => 'Nome da turma',
         'year' => 'Ano',
     ]
 ];

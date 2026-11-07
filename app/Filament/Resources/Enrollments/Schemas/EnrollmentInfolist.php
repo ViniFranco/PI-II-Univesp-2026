@@ -15,17 +15,20 @@ class EnrollmentInfolist
                 TextEntry::make('id')
                     ->label('ID'),
                 TextEntry::make('student.name')
-                    ->label('Student'),
+                    ->label(__('filament/resources/student.columns.name')),
                 TextEntry::make('schoolClass.name')
-                    ->label('School class'),
+                    ->label(__('filament/resources/school_class.columns.name')),
                 TextEntry::make('deleted_at')
                     ->dateTime()
-                    ->visible(fn (Enrollment $record): bool => $record->trashed()),
+                    ->label(__('filament/common/columns.deleted_at'))
+                    ->visible(fn(Enrollment $record): bool => $record->trashed()),
                 TextEntry::make('created_at')
                     ->dateTime()
+                    ->label(__('filament/common/columns.created_at'))
                     ->placeholder('-'),
                 TextEntry::make('updated_at')
                     ->dateTime()
+                    ->label(__('filament/common/columns.updated_at'))
                     ->placeholder('-'),
             ]);
     }

@@ -3,6 +3,9 @@
 return [
     'label' => 'Responsável',
     'plural' => 'Responsáveis',
+    'actions' => [
+        'view' => 'Visualizar responsável',
+    ],
     'columns' => [
         'name' => 'Nome',
         'email' => 'E-mail',
