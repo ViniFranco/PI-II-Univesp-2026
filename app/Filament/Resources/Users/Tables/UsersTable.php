@@ -17,20 +17,21 @@ class UsersTable
             ->columns([
                 TextColumn::make('id')
                     ->label('ID')
+                    ->visible(false)
                     ->searchable(),
                 TextColumn::make('name')
+                    ->label(__('filament/resources/student.columns.name'))
                     ->searchable(),
                 TextColumn::make('email')
-                    ->label('Email address')
+                    ->label(__('filament/resources/guardian.columns.email'))
                     ->searchable(),
-                TextColumn::make('email_verified_at')
-                    ->dateTime()
-                    ->sortable(),
                 TextColumn::make('created_at')
+                    ->label(__('filament/common/columns.created_at'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')
+                    ->label(__('filament/common/columns.updated_at'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),

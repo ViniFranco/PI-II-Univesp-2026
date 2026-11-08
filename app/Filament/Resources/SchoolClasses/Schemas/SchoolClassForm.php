@@ -18,6 +18,8 @@ class SchoolClassForm
                     ->required(),
                 TextInput::make('year')
                     ->numeric()
+                    ->minValue(today()->format('Y'))
+                    ->default(today()->format('Y'))
                     ->label(__('filament/resources/school_class.columns.year'))
                     ->validationAttribute(__('filament/resources/school_class.columns.year'))
                     ->rules(['date_format:Y'])

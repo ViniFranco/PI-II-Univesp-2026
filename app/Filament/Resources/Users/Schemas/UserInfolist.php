@@ -13,16 +13,16 @@ class UserInfolist
             ->components([
                 TextEntry::make('id')
                     ->label('ID'),
-                TextEntry::make('name'),
+                TextEntry::make('name')
+                    ->label(__('filament/resources/student.columns.name')),
                 TextEntry::make('email')
-                    ->label('Email address'),
-                TextEntry::make('email_verified_at')
-                    ->dateTime()
-                    ->placeholder('-'),
+                    ->label(__('filament/resources/guardian.columns.email')),
                 TextEntry::make('created_at')
+                    ->label(__('filament/common/columns.created_at'))
                     ->dateTime()
                     ->placeholder('-'),
                 TextEntry::make('updated_at')
+                    ->label(__('filament/common/columns.updated_at'))
                     ->dateTime()
                     ->placeholder('-'),
             ]);
