@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Enums\CommunicationChannels;
+use App\Enums\CommunicationReturnStatus;
 use App\Models\Communication;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -18,7 +20,14 @@ class CommunicationFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'communication_channel' => $this->faker->randomElement(CommunicationChannels::cases()),
+            'communication_return_status' => $this->faker->randomElement(CommunicationReturnStatus::cases()),
+            'description' => fake()
+                ->filamentRichContent()
+                ->heading()
+                ->paragraphs(3)
+                ->bulletList()
+                ->toArray(),
         ];
     }
 }

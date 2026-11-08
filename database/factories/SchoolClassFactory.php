@@ -18,7 +18,8 @@ class SchoolClassFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => $this->faker->words(2, true),
+            'year' => (int)today()->format('Y'),
         ];
     }
 }

@@ -18,7 +18,13 @@ class PedagogicalRecordFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'has_medical_report' => $this->faker->boolean(),
+            'content' => fake()
+                ->filamentRichContent()
+                ->heading()
+                ->paragraphs(3)
+                ->bulletList()
+                ->toArray(),
         ];
     }
 }
