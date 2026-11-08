@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Enums\Roles;
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\PermissionRegistrar;
 
@@ -16,15 +17,64 @@ class ShieldSeeder extends Seeder
     {
         app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
-        $roles = [
-            'admin',
-            'manager',
-            'tutor',
-            'teacher',
+        $defaultPermissions = $this->getDefaultPermissionsForRoles();
+
+        foreach (Roles::cases() as $role) {
+            $accessRole = Role::firstOrCreate(['name' => $role->value]);
+
+            $accessRole->syncPermissions($defaultPermissions[$role->value]);
+        }
+    }
+
+    private function getDefaultPermissionsForRoles(): array
+    {
+        $resources = [
+            'Student',
+            'SchoolClass',
+            'PedagogicalRecord',
+            'Guardian',
+            'Enrollment',
+            'Communication',
         ];
 
-        foreach ($roles as $role) {
-            Role::create(['name' => $role]);
+        $viewPermissions = $this->getPermissionsForResources($resources, ['viewAny', 'view']);
+
+        $allPermissionsForDefaultGuard = Permission::query()
+            ->where('guard_name', config('auth.defaults.guard'))
+            ->pluck('name')
+            ->all();
+
+        return [
+            Roles::ADMIN->value => $allPermissionsForDefaultGuard,
+            Roles::MANAGER->value => $this->getPermissionsForResources(
+                $resources,
+                ['viewAny', 'view', 'update', 'delete', 'deleteAny'],
+            ),
+            Roles::TEACHER->value => [
+                ...$viewPermissions,
+                ...$this->getPermissionsForResources(
+                    ['PedagogicalRecord', 'Communication'],
+                    ['create', 'update'],
+                ),
+            ],
+            Roles::TUTOR->value => $viewPermissions,
+        ];
+    }
+
+    private function getPermissionsForResources(array $resources, array $methods): array
+    {
+        $configuredMethods = config('filament-shield.policies.methods', []);
+
+        $methods = array_intersect($methods, $configuredMethods);
+
+        $permissions = [];
+
+        foreach ($resources as $resource) {
+            foreach ($methods as $method) {
+                $permissions[] = ucfirst($method) . ':' . $resource;
+            }
         }
+
+        return $permissions;
     }
 }

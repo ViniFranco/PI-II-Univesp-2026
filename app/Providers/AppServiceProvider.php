@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Enums\Roles;
 use Carbon\CarbonImmutable;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
@@ -27,7 +28,7 @@ class AppServiceProvider extends ServiceProvider
         $this->configureDefaults();
 
         Gate::before(function ($user, $ability) {
-            return $user->hasRole('admin') ? true : null;
+            return $user->hasRole(Roles::ADMIN->value) ? true : null;
         });
     }
 

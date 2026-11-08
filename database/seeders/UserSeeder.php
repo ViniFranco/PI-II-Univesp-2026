@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Enums\Roles;
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class UserSeeder extends Seeder
@@ -15,7 +15,7 @@ class UserSeeder extends Seeder
     {
         User::factory()
             ->afterCreating(function (User $user) {
-                $user->assignRole('admin');
+                $user->assignRole(Roles::ADMIN->value);
             })
             ->createOne([
                 'name' => 'Admin',
@@ -24,7 +24,7 @@ class UserSeeder extends Seeder
 
         User::factory()
             ->afterCreating(function (User $user) {
-                $user->assignRole('manager');
+                $user->assignRole(Roles::MANAGER->value);
             })
             ->createOne([
                 'name' => 'Gestor Teste',
@@ -33,7 +33,7 @@ class UserSeeder extends Seeder
 
         User::factory()
             ->afterCreating(function (User $user) {
-                $user->assignRole('tutor');
+                $user->assignRole(Roles::TUTOR->value);
             })
             ->createOne([
                 'name' => 'Tutor Teste',
@@ -42,7 +42,7 @@ class UserSeeder extends Seeder
 
         User::factory()
             ->afterCreating(function (User $user) {
-                $user->assignRole('teacher');
+                $user->assignRole(Roles::TEACHER->value);
             })
             ->createOne([
                 'name' => 'Professor Teste',
