@@ -9,6 +9,7 @@ use App\Filament\Resources\Communications\Pages\ViewCommunication;
 use App\Filament\Resources\Communications\Schemas\CommunicationForm;
 use App\Filament\Resources\Communications\Schemas\CommunicationInfolist;
 use App\Filament\Resources\Communications\Tables\CommunicationsTable;
+use App\Filament\Resources\Communications\Widgets\CommunicationsOverview;
 use App\Models\Communication;
 use BackedEnum;
 use Filament\Resources\Resource;
@@ -54,6 +55,13 @@ class CommunicationResource extends Resource
             'create' => CreateCommunication::route('/create'),
             'view' => ViewCommunication::route('/{record}'),
             'edit' => EditCommunication::route('/{record}/edit'),
+        ];
+    }
+
+    public static function getWidgets(): array
+    {
+        return [
+            CommunicationsOverview::class,
         ];
     }
 
