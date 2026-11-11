@@ -47,11 +47,14 @@ class PedagogicalRecordForm
                             ])
                             ->toArray();
                     })
+                    ->label(__('filament/resources/enrollment.label'))
                     ->columnSpanFull()
                     ->required(),
                 Toggle::make('has_medical_report')
+                    ->label(__('filament/resources/pedagogical_record.columns.has_medical_report'))
                     ->required(),
                 RichEditor::make('content')
+                    ->label(__('filament/resources/pedagogical_record.columns.content'))
                     ->toolbarButtons([
                         ['bold', 'italic', 'underline', 'strike', 'subscript', 'superscript'],
                         ['h2', 'h3'],
