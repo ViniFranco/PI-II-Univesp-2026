@@ -34,7 +34,7 @@ class DatabaseSeeder extends Seeder
             ->has(
                 Enrollment::factory()
                     ->count(10)
-                    ->state(fn() => [
+                    ->state(fn () => [
                         'student_id' => Student::factory()
                             ->for(Guardian::factory())
                             ->has(Communication::factory()->state(['user_id' => $admin->id]))

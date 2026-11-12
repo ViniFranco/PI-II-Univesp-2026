@@ -5,5 +5,5 @@ return [
     'columns' => [
         'name' => 'Nome da turma',
         'year' => 'Ano',
-    ]
+    ],
 ];

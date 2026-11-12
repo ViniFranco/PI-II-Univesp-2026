@@ -82,7 +82,7 @@ class StudentResource extends Resource
         return __('filament/common/navigation.management');
     }
 
-    public static function getNavigationIcon(): string | BackedEnum | Htmlable | null
+    public static function getNavigationIcon(): string|BackedEnum|Htmlable|null
     {
         return Heroicon::UserCircle;
     }

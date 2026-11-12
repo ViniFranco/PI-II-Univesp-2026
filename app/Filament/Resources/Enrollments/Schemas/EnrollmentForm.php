@@ -26,7 +26,7 @@ class EnrollmentForm
                     ->searchable()
                     ->label(__('filament/resources/school_class.columns.name'))
                     ->validationAttribute(__('filament/resources/school_class.columns.name'))
-                    ->getOptionLabelFromRecordUsing(fn($record) => $record->name . ' - ' . $record->year)
+                    ->getOptionLabelFromRecordUsing(fn ($record) => $record->name.' - '.$record->year)
                     ->required(),
             ]);
     }

@@ -23,7 +23,7 @@ class StudentInfolist
                     ->label(__('filament/resources/student.columns.guardian_id')),
                 TextEntry::make('deleted_at')
                     ->dateTime()
-                    ->visible(fn(Student $record): bool => $record->trashed()),
+                    ->visible(fn (Student $record): bool => $record->trashed()),
                 TextEntry::make('created_at')
                     ->label(__('filament/common/columns.created_at'))
                     ->dateTime()

@@ -28,7 +28,7 @@ class PedagogicalRecordInfolist
                 TextEntry::make('deleted_at')
                     ->dateTime()
                     ->label(__('filament/common/columns.deleted_at'))
-                    ->visible(fn(PedagogicalRecord $record): bool => $record->trashed()),
+                    ->visible(fn (PedagogicalRecord $record): bool => $record->trashed()),
                 TextEntry::make('created_at')
                     ->dateTime()
                     ->label(__('filament/common/columns.created_at'))
@@ -38,7 +38,7 @@ class PedagogicalRecordInfolist
                     ->label(__('filament/common/columns.updated_at'))
                     ->placeholder('-'),
                 TextEntry::make('content')
-                    ->state(fn(PedagogicalRecord $record) => RichContentRenderer::make($record->content)->toHtml())
+                    ->state(fn (PedagogicalRecord $record) => RichContentRenderer::make($record->content)->toHtml())
                     ->html()
                     ->prose()
                     ->label(__('filament/resources/pedagogical_record.columns.content'))

@@ -26,19 +26,17 @@ class PedagogicalRecordForm
                         return Enrollment::query()
                             ->whereHas(
                                 'student',
-                                fn($query) =>
-                                $query->where('name', 'ilike', "%{$search}%")
+                                fn ($query) => $query->where('name', 'ilike', "%{$search}%")
                             )
                             ->orWhereHas(
                                 'schoolClass',
-                                fn($query) =>
-                                $query->where('name', 'ilike', "%{$search}%")
+                                fn ($query) => $query->where('name', 'ilike', "%{$search}%")
                                     ->orWhere('year', 'ilike', "%{$search}%")
                             )
                             ->with(['student', 'schoolClass'])
                             ->limit(50)
                             ->get()
-                            ->mapWithKeys(fn($enrollment) => [
+                            ->mapWithKeys(fn ($enrollment) => [
                                 $enrollment->id => implode(' - ', [
                                     $enrollment->student->name,
                                     $enrollment->schoolClass->name,

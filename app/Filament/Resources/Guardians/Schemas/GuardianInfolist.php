@@ -33,7 +33,7 @@ class GuardianInfolist
                 TextEntry::make('deleted_at')
                     ->label(__('filament/common/columns.deleted_at'))
                     ->dateTime()
-                    ->visible(fn(Guardian $record): bool => $record->trashed()),
+                    ->visible(fn (Guardian $record): bool => $record->trashed()),
                 TextEntry::make('created_at')
                     ->label(__('filament/common/columns.created_at'))
                     ->dateTime()

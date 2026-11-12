@@ -81,7 +81,7 @@ class ShieldSeeder extends Seeder
 
         foreach ($resources as $resource) {
             foreach ($methods as $method) {
-                $permissions[] = ucfirst($method) . ':' . $resource;
+                $permissions[] = ucfirst($method).':'.$resource;
             }
         }
 

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Database\Factories\EnrollmentFactory;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -11,8 +12,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Enrollment extends Model
 {
-    /** @use HasFactory<\Database\Factories\EnrollmentFactory> */
-    use HasFactory, SoftDeletes, HasUlids;
+    /** @use HasFactory<EnrollmentFactory> */
+    use HasFactory, HasUlids, SoftDeletes;
 
     protected $fillable = [
         'student_id',

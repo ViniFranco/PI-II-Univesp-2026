@@ -4,8 +4,8 @@ namespace App\Providers\Filament;
 
 use App\Filament\Resources\Communications\Widgets\CommunicationsOverview;
 use App\Filament\Widgets\AccountWidget;
-use Filament\Enums\GlobalSearchPosition;
 use BezhanSalleh\FilamentShield\FilamentShieldPlugin;
+use Filament\Enums\GlobalSearchPosition;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;

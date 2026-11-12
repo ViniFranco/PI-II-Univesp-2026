@@ -31,7 +31,7 @@ use Spatie\Permission\Traits\HasRoles;
 class User extends Authenticatable
 {
     /** @use HasFactory<UserFactory> */
-    use HasFactory, Notifiable, HasUlids, HasRoles;
+    use HasFactory, HasRoles, HasUlids, Notifiable;
 
     /**
      * Get the attributes that should be cast.
@@ -54,7 +54,7 @@ class User extends Authenticatable
         $initials = Str::initials($this->name, true);
 
         return Str::length($initials) > 1
-            ? Str::substr($initials, 0, 1) . Str::substr($initials, -1)
+            ? Str::substr($initials, 0, 1).Str::substr($initials, -1)
             : $initials;
     }
 }

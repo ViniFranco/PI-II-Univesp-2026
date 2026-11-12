@@ -6,11 +6,11 @@ use App\Filament\Resources\SchoolClasses\Pages\CreateSchoolClass;
 use App\Filament\Resources\SchoolClasses\Pages\EditSchoolClass;
 use App\Filament\Resources\SchoolClasses\Pages\ListSchoolClasses;
 use App\Filament\Resources\SchoolClasses\Pages\ViewSchoolClass;
+use App\Filament\Resources\SchoolClasses\RelationManagers\EnrollmentsRelationManager;
+use App\Filament\Resources\SchoolClasses\RelationManagers\PedagogicalRecordsRelationManager;
 use App\Filament\Resources\SchoolClasses\Schemas\SchoolClassForm;
 use App\Filament\Resources\SchoolClasses\Schemas\SchoolClassInfolist;
 use App\Filament\Resources\SchoolClasses\Tables\SchoolClassesTable;
-use App\Filament\Resources\SchoolClasses\RelationManagers\EnrollmentsRelationManager;
-use App\Filament\Resources\SchoolClasses\RelationManagers\PedagogicalRecordsRelationManager;
 use App\Models\SchoolClass;
 use BackedEnum;
 use Filament\Resources\Resource;
@@ -80,7 +80,7 @@ class SchoolClassResource extends Resource
         return __('filament/common/navigation.academic');
     }
 
-    public static function getNavigationIcon(): string | BackedEnum | Htmlable | null
+    public static function getNavigationIcon(): string|BackedEnum|Htmlable|null
     {
         return Heroicon::AcademicCap;
     }

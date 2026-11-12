@@ -3,18 +3,19 @@
 namespace App\Models;
 
 use App\Enums\CommunicationReturnStatus;
+use Database\Factories\CommunicationFactory;
 use Illuminate\Database\Eloquent\Attributes\Scope;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Communication extends Model
 {
-    /** @use HasFactory<\Database\Factories\CommunicationFactory> */
-    use HasFactory, SoftDeletes, HasUlids;
+    /** @use HasFactory<CommunicationFactory> */
+    use HasFactory, HasUlids, SoftDeletes;
 
     protected $fillable = [
         'user_id',

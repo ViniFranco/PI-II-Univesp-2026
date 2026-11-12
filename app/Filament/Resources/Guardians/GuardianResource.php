@@ -6,11 +6,11 @@ use App\Filament\Resources\Guardians\Pages\CreateGuardian;
 use App\Filament\Resources\Guardians\Pages\EditGuardian;
 use App\Filament\Resources\Guardians\Pages\ListGuardians;
 use App\Filament\Resources\Guardians\Pages\ViewGuardian;
+use App\Filament\Resources\Guardians\RelationManagers\CommunicationsRelationManager;
 use App\Filament\Resources\Guardians\RelationManagers\StudentsRelationManager;
 use App\Filament\Resources\Guardians\Schemas\GuardianForm;
 use App\Filament\Resources\Guardians\Schemas\GuardianInfolist;
 use App\Filament\Resources\Guardians\Tables\GuardiansTable;
-use App\Filament\Resources\Guardians\RelationManagers\CommunicationsRelationManager;
 use App\Models\Guardian;
 use BackedEnum;
 use Filament\Resources\Resource;
@@ -85,7 +85,7 @@ class GuardianResource extends Resource
         return __('filament/common/navigation.management');
     }
 
-    public static function getNavigationIcon(): string | BackedEnum | Htmlable | null
+    public static function getNavigationIcon(): string|BackedEnum|Htmlable|null
     {
         return Heroicon::UserGroup;
     }

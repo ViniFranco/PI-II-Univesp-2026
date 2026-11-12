@@ -19,7 +19,7 @@ class ViewCommunication extends ViewRecord
         return [
             Action::make('view-guardian')
                 ->label(__('filament/resources/student.actions.view'))
-                ->url(fn(Communication $record): string => StudentResource::getUrl('view', ['record' => $record->student_id]))
+                ->url(fn (Communication $record): string => StudentResource::getUrl('view', ['record' => $record->student_id]))
                 ->icon(Heroicon::User),
             EditAction::make(),
         ];

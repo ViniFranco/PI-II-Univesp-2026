@@ -19,7 +19,7 @@ class ViewEnrollment extends ViewRecord
         return [
             Action::make('view-student')
                 ->label(__('filament/resources/student.actions.view'))
-                ->url(fn(Enrollment $record): string => StudentResource::getUrl('view', ['record' => $record->student_id]))
+                ->url(fn (Enrollment $record): string => StudentResource::getUrl('view', ['record' => $record->student_id]))
                 ->icon(Heroicon::User),
             EditAction::make(),
         ];

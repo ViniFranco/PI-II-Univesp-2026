@@ -19,7 +19,7 @@ class SchoolClassFactory extends Factory
     {
         return [
             'name' => $this->faker->words(2, true),
-            'year' => (int)today()->format('Y'),
+            'year' => (int) today()->format('Y'),
         ];
     }
 }

@@ -21,7 +21,7 @@ class EnrollmentInfolist
                 TextEntry::make('deleted_at')
                     ->dateTime()
                     ->label(__('filament/common/columns.deleted_at'))
-                    ->visible(fn(Enrollment $record): bool => $record->trashed()),
+                    ->visible(fn (Enrollment $record): bool => $record->trashed()),
                 TextEntry::make('created_at')
                     ->dateTime()
                     ->label(__('filament/common/columns.created_at'))

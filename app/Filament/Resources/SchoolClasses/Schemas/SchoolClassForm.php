@@ -2,7 +2,6 @@
 
 namespace App\Filament\Resources\SchoolClasses\Schemas;
 
-use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 

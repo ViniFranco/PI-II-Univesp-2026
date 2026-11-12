@@ -19,7 +19,7 @@ class ViewPedagogicalRecord extends ViewRecord
         return [
             Action::make('view-enrollment')
                 ->label(__('filament/resources/enrollment.actions.view'))
-                ->url(fn(PedagogicalRecord $record): string => EnrollmentResource::getUrl('view', ['record' => $record->enrollment_id]))
+                ->url(fn (PedagogicalRecord $record): string => EnrollmentResource::getUrl('view', ['record' => $record->enrollment_id]))
                 ->icon(Heroicon::Document),
             EditAction::make(),
         ];

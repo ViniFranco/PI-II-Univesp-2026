@@ -17,17 +17,17 @@ enum CommunicationChannels: string implements HasLabel
 
     case WHATSAPP = 'whatsapp';
 
-    public function getLabel(): string | Htmlable | null
+    public function getLabel(): string|Htmlable|null
     {
         return __(sprintf('filament/common/enums.communication_channels.%s', $this->name));
     }
 
-    public function getColor(): string | array | null
+    public function getColor(): string|array|null
     {
         return 'primary';
     }
 
-    public function getIcon(): string | BackedEnum | Htmlable | null
+    public function getIcon(): string|BackedEnum|Htmlable|null
     {
         return match ($this) {
             self::MEETING => Heroicon::UserGroup,
