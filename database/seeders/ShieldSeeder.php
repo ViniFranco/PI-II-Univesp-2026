@@ -38,6 +38,25 @@ class ShieldSeeder extends Seeder
         ];
 
         $viewPermissions = $this->getPermissionsForResources($resources, ['viewAny', 'view']);
+        $managerPermissions = $this->getPermissionsForResources(
+            $resources,
+            ['viewAny', 'view', 'update', 'delete', 'deleteAny'],
+        );
+        $teacherPermissions = [
+            ...$viewPermissions,
+            ...$this->getPermissionsForResources(
+                ['PedagogicalRecord', 'Communication'],
+                ['create', 'update'],
+            ),
+        ];
+        $tutorPermissions = $viewPermissions;
+
+        foreach (array_unique([...$managerPermissions, ...$teacherPermissions, ...$tutorPermissions]) as $permission) {
+            Permission::firstOrCreate([
+                'name' => $permission,
+                'guard_name' => config('auth.defaults.guard'),
+            ]);
+        }
 
         $allPermissionsForDefaultGuard = Permission::query()
             ->where('guard_name', config('auth.defaults.guard'))
@@ -46,18 +65,9 @@ class ShieldSeeder extends Seeder
 
         return [
             Roles::ADMIN->value => $allPermissionsForDefaultGuard,
-            Roles::MANAGER->value => $this->getPermissionsForResources(
-                $resources,
-                ['viewAny', 'view', 'update', 'delete', 'deleteAny'],
-            ),
-            Roles::TEACHER->value => [
-                ...$viewPermissions,
-                ...$this->getPermissionsForResources(
-                    ['PedagogicalRecord', 'Communication'],
-                    ['create', 'update'],
-                ),
-            ],
-            Roles::TUTOR->value => $viewPermissions,
+            Roles::MANAGER->value => $managerPermissions,
+            Roles::TEACHER->value => $teacherPermissions,
+            Roles::TUTOR->value => $tutorPermissions,
         ];
     }
 
